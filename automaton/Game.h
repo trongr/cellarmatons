@@ -9,11 +9,11 @@ class Game
 {
 public:
 	Game();
-	Game(int size, Rule rule);
+	Game(vector<int> colors, Rule rule);
 	~Game();
 	void print();
 	void update();
-	void initcells(int size);
+    void initcells(vector<int> colors);
 private:
 	vector<Cell> _cells;
     Rule _rule;

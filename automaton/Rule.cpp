@@ -1,5 +1,8 @@
+#include <iostream>
+#include <cmath>
 #include "Rule.h"
 
+using namespace std;
 
 Rule::Rule()
 {
@@ -30,22 +33,26 @@ Rule::Rule()
         110 -> 1
         111 -> 0
 
-    the column on the right gives us a number 01110100 between 0 and
+    the column on the right gives us a number 00101110 between 0 and
     255 corresponding to our rule. this number is the encoding
-    of the rule.
+    of the rule. note that 00101110 has its zeroth digit first.
 
     size is the size of the group. in this case size == 3.
 */
-Rule::Rule(int size, int encoding)
+Rule::Rule(vector<int> encoding)
 {
-    _size = size;
-    _encoding = encoding;
-    // mk convert encoding to some kind of array so you can compare a group to its entries
-    // and calculate the new color
+    _encoding = encoding; // e.g. {0, 0, 1, 0, 1, 1, 1, 0}
 }
 
 Rule::~Rule()
 {
 }
 
-
+int Rule::newColor(vector<int> colors){ // e.g. colors = {0, 1, 1}
+    // basically convert binary colors into (decimal) int
+    int colorsindex = 0;
+    for (int i = 0; i < colors.size(); i++){
+        colorsindex += colors[i] * pow(2, i);
+    }
+    return _encoding[colorsindex];
+}

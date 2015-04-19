@@ -7,9 +7,9 @@ Game::Game()
 {
 }
 
-Game::Game(int size, Rule rule){
+Game::Game(vector<int> colors, Rule rule){
     _rule = rule;
-	initcells(size);
+	initcells(colors);
 	while (true){ // c-c to end program
 		update();
 		print();
@@ -40,6 +40,8 @@ void Game::update(){
 	}
 }
 
-void Game::initcells(int size){
-	_cells = vector<Cell>(size);
+void Game::initcells(vector<int> colors){
+    for (int i = 0; i < colors.size(); i++){
+        _cells.push_back(Cell(colors[i]));
+    }
 }

@@ -12,11 +12,11 @@ public:
 	~Cell();
 	int getColor();
 	void setColor(int color);
-    void updateColor(Rule rule);
     void updateNeighbours(Cell left, Cell right);
+    void updateColor(Rule rule);
 private:
 	int _color;
-    Cell* _left;
-    Cell* _right;
+    int _leftcolor;
+    int _rightcolor;
 };
 

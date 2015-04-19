@@ -1,13 +1,16 @@
 #pragma once
 #include <vector>
+
+using namespace std;
+
 class Rule
 {
 public:
 	Rule();
-    Rule(int size, int encoding);
+    Rule(vector<int> encoding);
 	~Rule();
+    int newColor(vector<int> colors);
 private:
-    int _size;
-    int _encoding; 
+    vector<int> _encoding; 
 };
 
