@@ -7,11 +7,9 @@ Game::Game()
 {
 }
 
-Game::Game(int size){
-
+Game::Game(int size, Rule rule){
+    _rule = rule;
 	initcells(size);
-	initgroups();
-
 	while (true){ // c-c to end program
 		update();
 		print();
@@ -31,25 +29,17 @@ void Game::print()
 }
 
 void Game::update(){
-	for (size_t i = 0; i < _groups.size(); i++){
-		_groups[i].update();
-	}
-    for (size_t i = 0; i < _groups.size(); i++){
-        _cells[i].setColor(_groups[i].getColor());
+    size_t cellssize = _cells.size();
+    for (size_t i = 0; i < cellssize; i++){
+        _cells[i].updateNeighbours(
+            _cells[(i - 1 + cellssize) % cellssize], 
+            _cells[(i + 1 + cellssize) % cellssize]);
     }
+	for (size_t i = 0; i < cellssize; i++){
+		_cells[i].updateColor(_rule);
+	}
 }
 
 void Game::initcells(int size){
 	_cells = vector<Cell>(size);
-}
-
-void Game::initgroups(){
-	size_t cellssize = _cells.size();
-	for (size_t i = 0; i < cellssize; i++){
-        _groups.push_back(Group({ 
-            _cells[(i - 1 + cellssize) % cellssize],
-            _cells[(i     + cellssize) % cellssize],
-            _cells[(i + 1 + cellssize) % cellssize]
-        }));
-	}
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Cell.h"
-#include "Group.h"
+#include "Rule.h"
 
 using namespace std;
 
@@ -9,14 +9,13 @@ class Game
 {
 public:
 	Game();
-	Game(int size);
+	Game(int size, Rule rule);
 	~Game();
 	void print();
 	void update();
 	void initcells(int size);
-	void initgroups();
 private:
 	vector<Cell> _cells;
-	vector<Group> _groups;
+    Rule _rule;
 };
 
