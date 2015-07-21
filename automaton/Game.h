@@ -17,5 +17,6 @@ public:
 private:
 	vector<Cell> _cells;
     Rule _rule;
+    static vector<char> BLACK_WHITE;
 };
 

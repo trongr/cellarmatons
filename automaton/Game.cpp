@@ -3,11 +3,14 @@
 
 using namespace std;
 
+vector<char> Game::BLACK_WHITE = { ' ', '#' };
+
 Game::Game()
 {
 }
 
-Game::Game(vector<int> colors, Rule rule){
+Game::Game(vector<int> colors, Rule rule)
+{
     _rule = rule;
 	initcells(colors);
 	while (true){ // c-c to end program
@@ -23,7 +26,7 @@ Game::~Game()
 void Game::print()
 {
 	for (size_t i = 0; i < _cells.size(); i++){
-		cout << _cells[i].getColor();
+		cout << Game::BLACK_WHITE[_cells[i].getColor()];
 	}
 	cout << endl;
 }
